@@ -83,3 +83,18 @@ galleryList.insertAdjacentHTML("beforeend", galleryMarkup);
 galleryList.addEventListener("click", (event) => {
   event.preventDefault();
 });
+
+const ulGallery = document.querySelector("ul.gallery");
+ulGallery.addEventListener("click", selectImage);
+function selectImage(event) {
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const selectedImage = event.target.dataset.source;
+  console.log(selectedImage);
+  const instance = basicLightbox.create(`
+    <img src="${selectedImage}" width="1112" height="640">
+`);
+
+  instance.show();
+}
